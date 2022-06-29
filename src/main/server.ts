@@ -1,4 +1,6 @@
-import app from '../config/app'
+import env from '../config/env'
+import { setupApp } from '../config/app'
 
-const port = 5050
-app.listen(port, () => { console.log(`Server listening on port ${port}`) })
+setupApp().then(app => {
+  app.listen(env.port, () => { console.log(`Sserver lintening on http://localhost:${env.port}`) })
+}).catch(console.error)
