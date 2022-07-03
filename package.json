@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "sucrase-node ./src/main/server.ts",
-    "dev": "nodemon --config nodemon.json ./src/main/server.ts"
+    "start": "nodemon --config nodemon.json ./src/main/server.ts"
   },
   "keywords": [],
   "author": "",
