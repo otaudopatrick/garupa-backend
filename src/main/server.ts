@@ -1,6 +1,7 @@
 import env from './config/env'
-import { setupApp } from './config/app'
 
-setupApp().then(app => {
-  app.listen(env.port, () => { console.log(`Sserver lintening on http://localhost:${env.port}`) })
-}).catch(console.error)
+(async () => {
+  const { setupApp } = await import('./config/app')
+  const app = await setupApp()
+  app.listen(env.port, () => console.log(`Server running at http://localhost:${env.port}`))
+})()
