@@ -7,10 +7,6 @@ export class DbLoadAccountById implements LoadAccountById {
   ) {}
 
   async load (id:string): Promise<LoadAccountById.Result> {
-    const account = await this.loadAccountByIdRepository.loadById(id)
-    if(account){
-      return account
-    }
-    return null
+    return await this.loadAccountByIdRepository.loadById(id)
   }
 }

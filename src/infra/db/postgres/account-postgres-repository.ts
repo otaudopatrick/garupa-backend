@@ -37,6 +37,7 @@ export class AccountPostgresRepository implements AddAccountRepository, CheckAcc
       id: result.dataValues.id,
       firstName:result.dataValues.firstName,
       lastName: result.dataValues.lastName,
+      email: result.dataValues.email
     }
   }
   async updateAccessToken(id: string, token: string):Promise<void> {

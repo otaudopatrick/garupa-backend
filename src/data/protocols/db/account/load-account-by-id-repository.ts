@@ -7,5 +7,6 @@ export namespace LoadAccountByIdRepository {
     id: string,
     firstName:string,
     lastName: string,
+    email:string
   }
 }
