@@ -19,11 +19,10 @@ export class SignUpController implements Controller {
       if (error) {
         return badRequest(error)
       }
-      console.log(request)
-
-      const { name, email, password } = request
+      const { firstName, lastName, email, password } = request
       const isValid = await this.addAccount.add({
-        name,
+        firstName,
+        lastName,
         email,
         password
       })
@@ -32,7 +31,7 @@ export class SignUpController implements Controller {
       }
       return ok({ ok: 'ok' })
     } catch (error) {
-
+      console.log(error)
       return serverError(error)
     }
   }
@@ -40,7 +39,8 @@ export class SignUpController implements Controller {
 
 export namespace SignUpController {
   export type Request = {
-    name: string
+    firstName: string,
+    lastName: string,
     email: string
     password: string
     passwordConfirmation: string

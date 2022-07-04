@@ -1,7 +1,9 @@
-import { DataTypes, Sequelize } from 'sequelize';
+import { Sequelize,DataTypes } from "sequelize"
+
+export let User = null
 
 export const userModel = async (sequelize:Sequelize) =>{
-  await sequelize.define('User', {
+  User = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -16,7 +18,8 @@ export const userModel = async (sequelize:Sequelize) =>{
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
@@ -25,5 +28,6 @@ export const userModel = async (sequelize:Sequelize) =>{
   }, {
     freezeTableName: true,
     tableName: 'user'
-  }).sync();
+  })
+  await User.sync()
 }
