@@ -2,13 +2,31 @@
 
 import { AddAccountRepository } from "../../../data/protocols/db/account/add-account-repository";
 import { CheckAccountByEmailRepository } from "../../../data/protocols/db/account/check-account-by-email-repository";
+import { CheckAccountByIdRepository } from "../../../data/protocols/db/account/check-account-by-id-repository";
+import { DeleteAccountByIdRepository } from "../../../data/protocols/db/account/delete-account-by-id-repository";
 import { LoadAccountByEmailRepository } from "../../../data/protocols/db/account/load-account-by-email-repository";
 import { LoadAccountByIdRepository } from "../../../data/protocols/db/account/load-account-by-id-repository";
 import { UpdateAccessTokenRepository } from "../../../data/protocols/db/account/update-access-token-repository";
 import { AddAccount } from "../../../domain/usecases/add-account";
 import { User } from "./models/user-model";
 
-export class AccountPostgresRepository implements AddAccountRepository, CheckAccountByEmailRepository,LoadAccountByEmailRepository,UpdateAccessTokenRepository, LoadAccountByIdRepository  {
+export class AccountPostgresRepository implements AddAccountRepository, CheckAccountByEmailRepository,LoadAccountByEmailRepository,UpdateAccessTokenRepository, LoadAccountByIdRepository,CheckAccountByIdRepository,DeleteAccountByIdRepository  {
+  async delete(id: string):Promise<DeleteAccountByIdRepository.Result>{
+    await User.destroy({
+      where: {
+        id: id,
+      }
+    });
+    return {}
+  }
+  async checkById(id: string):Promise<boolean>{
+    const result =  await User.findAll({
+      where: {
+        id: id,
+      }
+    });
+    return !result.length ? false : true
+  }
   async loadById(id: string):Promise<LoadAccountByIdRepository.Result>{
     const [result] =  await User.findAll({
       where: {

@@ -11,11 +11,14 @@ export const badRequest = (error: Error): HttpResponse => ({
   body: error
 })
 
-export const ok = (data: any): HttpResponse => {
-  return {
-    statusCode: 200,
-    body: data
+export const ok = (data?: any): HttpResponse => {
+  const response:HttpResponse = {
+      statusCode: 200,
   }
+  if (data != null) {
+    response.body = data
+  }
+  return response
 }
 
 export const forbidden = (error: Error): HttpResponse => ({
