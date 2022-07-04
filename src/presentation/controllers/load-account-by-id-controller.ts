@@ -20,8 +20,10 @@ export class LoadAccountByIdController implements Controller{
         return forbidden(new InvalidParamError('accountId'))
       }
       const accountResult = await this.loadAccountById.load(accountId)
+      
       return ok(accountResult)
     } catch (error) {
+      console.log(error)
      return serverError(error) 
     }
   }
