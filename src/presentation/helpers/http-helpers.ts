@@ -11,10 +11,13 @@ export const badRequest = (error: Error): HttpResponse => ({
   body: error
 })
 
-export const ok = (data: any): HttpResponse => ({
-  statusCode: 200,
-  body: data
-})
+export const ok = (data: any): HttpResponse => {
+  console.log("authenticationModel", data)
+  return {
+    statusCode: 200,
+    body: data
+  }
+}
 
 export const forbidden = (error: Error): HttpResponse => ({
   statusCode: 403,

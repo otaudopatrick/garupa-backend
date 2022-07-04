@@ -25,6 +25,11 @@ export const userModel = async (sequelize:Sequelize) =>{
       type: DataTypes.STRING,
       allowNull: false
     },
+    accessToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true
+    },
   }, {
     freezeTableName: true,
     tableName: 'user'
